@@ -59,4 +59,8 @@ dependencies {
     //dbViewer
     debugImplementation("com.infinum.dbinspector:dbinspector:5.4.8")
     releaseImplementation("com.infinum.dbinspector:dbinspector-no-op:5.4.8")
+
+    //dagger2
+    implementation 'com.google.dagger:dagger:2.35.1'
+    kapt 'com.google.dagger:dagger-compiler:2.35.1'
 }
