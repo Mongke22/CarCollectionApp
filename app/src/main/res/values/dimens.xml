@@ -5,4 +5,11 @@
     <dimen name="margin_left">20dp</dimen>
     <dimen name="margin_right">20dp</dimen>
     <dimen name="margin_top">10dp</dimen>
+    <dimen name="car_card_width">380dp</dimen>
+    <dimen name="car_card_margin">8dp</dimen>
+    <dimen name="car_card_corner_radius">35dp</dimen>
+    <dimen name="car_card_elevation">5dp</dimen>
+    <dimen name="hotel_card_width">380dp</dimen>
+    <dimen name="image_height">188dp</dimen>
+    <dimen name="car_power_bottom_margin">40dp</dimen>
 </resources>
