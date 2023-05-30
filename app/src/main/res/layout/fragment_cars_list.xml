@@ -49,7 +49,7 @@
 
     <androidx.constraintlayout.widget.Barrier
         android:id="@+id/topBarrier"
-        android:layout_width="match_parent"
+        android:layout_width="0dp"
         android:layout_height="0dp"
         app:barrierDirection="bottom"
         app:constraint_referenced_ids="tvCarsTitle, filter" />
@@ -57,12 +57,14 @@
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rv_cars"
         android:layout_width="wrap_content"
-        android:layout_height="match_parent"
+        android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"
         app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
         app:layout_constraintEnd_toEndOf="@id/rightGuideLine"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@id/topBarrier" />
+        app:layout_constraintStart_toStartOf="@id/leftGuideLine"
+        app:layout_constraintTop_toBottomOf="@id/topBarrier"
+        tools:listitem="@layout/car_card_view"
+        />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
