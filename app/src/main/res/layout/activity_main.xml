@@ -6,6 +6,20 @@
     android:layout_height="match_parent"
     tools:context=".presentation.MainActivity">
 
+    <com.google.android.material.appbar.AppBarLayout
+        android:id="@+id/actionBar"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <com.google.android.material.appbar.MaterialToolbar
+            android:id="@+id/toolBar"
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize"
+            app:titleTextColor="@color/white" />
+    </com.google.android.material.appbar.AppBarLayout>
+
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
