@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">CarCollectionApp</string>
+    <string name="cars_title">Машины</string>
 </resources>
