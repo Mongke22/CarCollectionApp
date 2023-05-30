@@ -1,7 +1,8 @@
-package com.example.carcollectionapp
+package com.example.carcollectionapp.presentation
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import com.example.carcollectionapp.R
 
 class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
