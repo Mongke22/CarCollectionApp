@@ -12,7 +12,7 @@
         android:layout_height="match_parent">
 
         <TextView
-            android:id="@+id/carName"
+            android:id="@+id/listCarName"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/car_name_sample"
@@ -23,7 +23,7 @@
             app:layout_constraintTop_toTopOf="parent" />
 
         <ImageView
-            android:id="@+id/carImage"
+            android:id="@+id/listCarImage"
             android:layout_width="0dp"
             android:layout_height="@dimen/image_size"
             android:layout_marginStart="@dimen/car_elements_margin"
@@ -32,10 +32,10 @@
             android:src="@drawable/car_example"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/carName" />
+            app:layout_constraintTop_toBottomOf="@id/listCarName" />
 
         <TextView
-            android:id="@+id/carPower"
+            android:id="@+id/listCarPower"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="@dimen/car_elements_margin"
@@ -43,7 +43,7 @@
             android:layout_marginBottom="@dimen/car_power_bottom_margin"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/carImage"
+            app:layout_constraintTop_toBottomOf="@id/listCarImage"
             android:text="@string/car_power_template"
 
             />
