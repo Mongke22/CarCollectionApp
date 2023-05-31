@@ -1,10 +1,17 @@
-<com.google.android.material.card.MaterialCardView xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:layout_width="@dimen/car_card_width"
     android:layout_height="wrap_content"
-    app:cardCornerRadius="@dimen/car_card_corner_radius"
-    app:cardElevation="@dimen/car_card_elevation">
-
+    android:layout_width="wrap_content"
+    >
+    <com.google.android.material.card.MaterialCardView
+        android:layout_width="@dimen/car_card_width"
+        android:layout_height="@dimen/car_card_height"
+        app:cardCornerRadius="@dimen/car_card_corner_radius"
+        app:cardElevation="@dimen/car_card_elevation"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        >
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent">
@@ -45,7 +52,7 @@
                 android:src="@drawable/manufacture" />
 
             <TextView
-                android:id="@+id/carLocation"
+                android:id="@+id/carProductionDate"
                 style="@style/carCardTextView"
                 android:text="@string/production_date_template" />
         </LinearLayout>
@@ -62,17 +69,10 @@
                 android:src="@drawable/car_engine" />
 
             <TextView
-                android:id="@+id/carDistance"
+                android:id="@+id/carPower"
                 style="@style/carCardTextView"
                 android:text="@string/car_power_template" />
         </LinearLayout>
-
-        <View
-            android:id="@+id/viewPlaceHolder"
-            android:layout_width="0dp"
-            android:layout_height="@dimen/place_holder_height"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/llCarCardPower" />
 
         <LinearLayout
             android:id="@+id/llCarAddDate"
@@ -82,7 +82,7 @@
             android:layout_marginBottom="@dimen/car_elements_margin"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/viewPlaceHolder">
+            app:layout_constraintTop_toBottomOf="@id/llCarCardPower">
 
             <ImageView
                 android:layout_width="wrap_content"
@@ -97,4 +97,5 @@
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>
-</com.google.android.material.card.MaterialCardView>
+    </com.google.android.material.card.MaterialCardView>
+</androidx.constraintlayout.widget.ConstraintLayout>
