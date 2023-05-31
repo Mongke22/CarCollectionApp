@@ -1,31 +1,55 @@
 package com.example.carcollectionapp.presentation.viewmodel
 
 import android.app.Application
-import androidx.lifecycle.AndroidViewModel
-import androidx.lifecycle.LiveData
-import androidx.lifecycle.ViewModel
+import android.content.Context
+import android.util.Log
+import androidx.datastore.core.DataStore
+import androidx.datastore.dataStore
+import androidx.datastore.preferences.core.Preferences
+import androidx.datastore.preferences.preferencesDataStore
+import androidx.lifecycle.*
 import androidx.navigation.NavController
 import com.example.carcollectionapp.R
 import com.example.carcollectionapp.data.CarRepositoryImpl
+import com.example.carcollectionapp.data.SettingsStorage
 import com.example.carcollectionapp.domain.CarInfo
 import com.example.carcollectionapp.domain.usecase.GetCarInfoListUseCase
 import com.example.carcollectionapp.presentation.fragments.CarsListFragmentDirections
+import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.first
+import kotlinx.coroutines.launch
 
 class CarsListViewModel(application: Application): AndroidViewModel(application) {
 
     private val repository = CarRepositoryImpl(application)
     private val getCarInfoListUseCase = GetCarInfoListUseCase(repository)
+    private val storage = SettingsStorage(application)
 
     private var _carList = getCarInfoListUseCase()
     val carList: LiveData<List<CarInfo>>
         get() = _carList
 
+    val settings = storage.getSettings.asLiveData()
+    val viewCount = storage.getViewCount.asLiveData()
+    val addCount = storage.getAddCount.asLiveData()
+
     fun showCarDetailInfo(id: Int, navController: NavController){
+        viewModelScope.launch {
+            storage.saveViewCount(storage.getViewCount.first() - 1)
+        }
         navController.navigate(CarsListFragmentDirections.actionCarsListFragmentToDetailInfoFragment(id))
     }
 
     fun moveToAddNewCarScreen(navController: NavController){
+        viewModelScope.launch {
+            storage.saveAddCount(storage.getAddCount.first() - 1)
+        }
         navController.navigate(R.id.action_carsListFragment_to_newCarFragment)
     }
+
+    fun moveToSettingsScreen(navController: NavController){
+        navController.navigate(R.id.action_carsListFragment_to_settingsFragment)
+    }
+
 
 }
