@@ -56,6 +56,14 @@
         app:layout_constraintStart_toEndOf="@id/tvCarsTitle"
         app:layout_constraintTop_toTopOf="@id/topGuideLine" />
 
+    <ImageView
+        android:id="@+id/settings"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/ic_settings"
+        app:layout_constraintEnd_toEndOf="@id/rightGuideLine"
+        app:layout_constraintTop_toTopOf="@id/topGuideLine" />
+
     <androidx.constraintlayout.widget.Barrier
         android:id="@+id/topBarrier"
         android:layout_width="0dp"
