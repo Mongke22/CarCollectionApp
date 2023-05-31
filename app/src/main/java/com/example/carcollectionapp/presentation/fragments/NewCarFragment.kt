@@ -26,6 +26,8 @@ import java.io.FileOutputStream
 import java.io.IOException
 import java.io.OutputStream
 import java.text.SimpleDateFormat
+import java.time.LocalDateTime
+import java.time.format.DateTimeFormatter
 import java.util.*
 
 
@@ -112,6 +114,11 @@ class NewCarFragment : BaseFragment<FragmentNewCarBinding, NewCarViewModel>() {
 
     private fun setupSaveButtonListener(){
         binding.btnSave.setOnClickListener {
+            theNewCar.carName = binding.etName.text.toString()
+            theNewCar.engineCapacity = binding.etPower.text.toString().toIntOrNull() ?: 0
+            theNewCar.productionDate = binding.etProductionDate.text.toString()
+            theNewCar.insertionDate = LocalDateTime.now().format(DateTimeFormatter.ofPattern(resources.getString(R.string.date_format)))
+
             viewModel.saveNewCar(theNewCar, findNavController())
         }
     }
