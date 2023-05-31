@@ -1,4 +1,4 @@
-package com.example.carcollectionapp.data.dataBase
+package com.example.carcollectionapp.data.database
 
 import androidx.room.Entity
 import androidx.room.PrimaryKey
