@@ -2,6 +2,7 @@ package com.example.carcollectionapp.presentation.fragments
 
 import android.view.View
 import androidx.activity.OnBackPressedCallback
+import androidx.navigation.fragment.findNavController
 import com.example.carcollectionapp.databinding.FragmentCarsListBinding
 import com.example.carcollectionapp.presentation.recycler.CarListAdapter
 import com.example.carcollectionapp.presentation.viewmodel.CarsListViewModel
@@ -61,13 +62,13 @@ class CarsListFragment: BaseFragment<FragmentCarsListBinding, CarsListViewModel>
 
     private fun setupItemClickListener(){
         carListAdapter.itemOnClickListener = { car ->
-            viewModel.showCarDetailInfo(car.id)
+            viewModel.showCarDetailInfo(car.id, findNavController())
         }
     }
 
     private fun setupAddButtonClickListener(){
         binding.fabAddCar.setOnClickListener(){
-            viewModel.moveToAddNewCarScreen()
+            viewModel.moveToAddNewCarScreen(findNavController())
         }
     }
 }

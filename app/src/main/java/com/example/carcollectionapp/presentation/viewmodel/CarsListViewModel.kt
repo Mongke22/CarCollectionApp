@@ -4,6 +4,8 @@ import android.app.Application
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.ViewModel
+import androidx.navigation.NavController
+import com.example.carcollectionapp.R
 import com.example.carcollectionapp.data.CarRepositoryImpl
 import com.example.carcollectionapp.domain.CarInfo
 import com.example.carcollectionapp.domain.usecase.GetCarInfoListUseCase
@@ -17,12 +19,12 @@ class CarsListViewModel(application: Application): AndroidViewModel(application)
     val carList: LiveData<List<CarInfo>>
         get() = _carList
 
-    fun showCarDetailInfo(id: Int){
-
+    fun showCarDetailInfo(id: Int, navController: NavController){
+        navController.navigate(R.id.action_carsListFragment_to_detailInfoFragment)
     }
 
-    fun moveToAddNewCarScreen(){
-
+    fun moveToAddNewCarScreen(navController: NavController){
+        navController.navigate(R.id.action_carsListFragment_to_newCarFragment)
     }
 
 }
