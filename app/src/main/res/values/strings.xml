@@ -11,4 +11,8 @@
     <string name="btn_text_save">Сохранить</string>
     <string name="production_date_template">Дата производства: %d.%d.%d</string>
     <string name="add_date_sample">30.05.2023</string>
+    <string name="subscription_opportunities">Возможности с подпиской:</string>
+    <string name="opportunity_first">- Неограниченный просмот коллекции</string>
+    <string name="opportunity_second">- Неограниченное количество загрузок в коллекцию</string>
+    <string name="subscription_text">Оформите подписку на 1 минуту</string>
 </resources>
