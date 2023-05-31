@@ -56,6 +56,8 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:background="@color/white"
+                    android:focusable="false"
+                    android:focusableInTouchMode="false"
                     android:hint="@string/edit_text_hint_productionDate"
                     android:inputType="date"
                     android:textColor="@color/orange"
