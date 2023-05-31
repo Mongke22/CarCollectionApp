@@ -3,4 +3,10 @@
     <string name="cars_title">Машины</string>
     <string name="car_name_sample">Porsche 911</string>
     <string name="car_power_template">Мощность: %d л.с.</string>
+    <string name="settings_button">Сбросить подписку</string>
+    <string name="edit_text_hint_name">Название</string>
+    <string name="edit_text_hint_productionDate">Дата выпуска</string>
+    <string name="edit_text_hint_power">Мощность</string>
+    <string name="text_add_image">Добавить картинку</string>
+    <string name="btn_text_save">Сохранить</string>
 </resources>
