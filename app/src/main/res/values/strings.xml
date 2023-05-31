@@ -15,4 +15,5 @@
     <string name="opportunity_first">- Неограниченный просмот коллекции</string>
     <string name="opportunity_second">- Неограниченное количество загрузок в коллекцию</string>
     <string name="subscription_text">Оформите подписку на 1 минуту</string>
+    <string name="no_items_text">Здесь пока ничего нет</string>
 </resources>
