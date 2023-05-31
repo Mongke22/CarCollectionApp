@@ -57,7 +57,7 @@
                     android:layout_height="wrap_content"
                     android:background="@color/white"
                     android:hint="@string/edit_text_hint_productionDate"
-                    android:inputType="textCapSentences"
+                    android:inputType="date"
                     android:textColor="@color/orange"
                     android:textColorHint="@color/peachColor"
                     android:textSize="@dimen/edit_text_text_size" />
@@ -77,10 +77,8 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:background="@color/white"
-                    android:focusable="false"
-                    android:focusableInTouchMode="false"
                     android:hint="@string/edit_text_hint_power"
-                    android:inputType="text"
+                    android:inputType="numberDecimal"
                     android:textColor="@color/orange"
                     android:textColorHint="@color/peachColor"
                     android:textSize="@dimen/edit_text_text_size" />
@@ -101,7 +99,7 @@
 
             <TextView
                 android:id="@+id/tvAddImage"
-                android:layout_width="wrap_content"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/text_add_image_marginTop"
                 android:background="?attr/selectableItemBackground"
