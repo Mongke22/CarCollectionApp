@@ -5,20 +5,25 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.navigation.fragment.findNavController
 import com.example.carcollectionapp.R
+import com.example.carcollectionapp.databinding.FragmentSettingsBinding
+import com.example.carcollectionapp.presentation.viewmodel.SettingsViewModel
 
-class SettingsFragment : Fragment() {
+class SettingsFragment : BaseFragment<FragmentSettingsBinding, SettingsViewModel>() {
 
-
-    override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?,
-    ): View? {
-        return inflater.inflate(R.layout.fragment_settings, container, false)
+    override fun getViewBinding(): FragmentSettingsBinding {
+        return FragmentSettingsBinding.inflate(layoutInflater)
     }
 
-    companion object {
-
-        fun newInstance() = SettingsFragment()
+    override fun getViewModelClass(): Class<SettingsViewModel> {
+        return SettingsViewModel::class.java
     }
+
+    override fun setupView() {
+        binding.btnReset.setOnClickListener {
+            viewModel.resetSettings(findNavController())
+        }
+    }
+
 }
