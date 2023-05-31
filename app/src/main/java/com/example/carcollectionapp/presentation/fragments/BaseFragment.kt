@@ -26,7 +26,6 @@ abstract class BaseFragment<VB : ViewBinding, VM: ViewModel> : Fragment() {
         savedInstanceState: Bundle?,
     ): View? {
 
-        setUpOnBackPressed()
         _binding = getViewBinding()
         viewModel = ViewModelProvider(requireActivity())[getViewModelClass()]
         return binding.root
@@ -41,15 +40,6 @@ abstract class BaseFragment<VB : ViewBinding, VM: ViewModel> : Fragment() {
     override fun onDestroyView() {
         super.onDestroyView()
         _binding = null
-    }
-
-    protected open fun setUpOnBackPressed() {
-        requireActivity().onBackPressedDispatcher.addCallback(
-            viewLifecycleOwner,
-            object : OnBackPressedCallback(true) {
-                override fun handleOnBackPressed() {
-                }
-            })
     }
 
     protected open fun observeData(){}

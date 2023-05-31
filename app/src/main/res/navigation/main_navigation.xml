@@ -14,7 +14,9 @@
             app:destination="@id/settingsFragment" />
         <action
             android:id="@+id/action_carsListFragment_to_newCarFragment"
-            app:destination="@id/newCarFragment" />
+            app:destination="@id/newCarFragment"
+            app:popUpTo="@id/carsListFragment"
+            app:popUpToInclusive="false" />
         <action
             android:id="@+id/action_carsListFragment_to_detailInfoFragment"
             app:destination="@id/detailInfoFragment" />

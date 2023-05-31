@@ -23,16 +23,6 @@ class CarsListFragment: BaseFragment<FragmentCarsListBinding, CarsListViewModel>
         return CarsListViewModel::class.java
     }
 
-    override fun setUpOnBackPressed() {
-        requireActivity().onBackPressedDispatcher.addCallback(
-            viewLifecycleOwner,
-            object : OnBackPressedCallback(true) {
-                override fun handleOnBackPressed() {
-                    requireActivity().finish()
-                }
-            })
-    }
-
     override fun observeData() {
         viewModel.carList.observe(this){ cars ->
             if(cars.isEmpty()){
