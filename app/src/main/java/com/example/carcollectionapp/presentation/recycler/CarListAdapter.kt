@@ -8,7 +8,7 @@ import com.example.carcollectionapp.domain.CarInfo
 
 class CarListAdapter : ListAdapter<CarInfo, CarInfoViewHolder>(CarDiffUtilCallBack()) {
 
-    var wordItemOnClickListener: ((CarInfo) -> Unit)? = null
+    var itemOnClickListener: ((CarInfo) -> Unit)? = null
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): CarInfoViewHolder {
         val view = LayoutInflater.from(parent.context).inflate(R.layout.car_card_view, parent, false)
@@ -23,7 +23,7 @@ class CarListAdapter : ListAdapter<CarInfo, CarInfoViewHolder>(CarDiffUtilCallBa
         holder.setName(car.carName)
 
         holder.view.setOnClickListener{
-            wordItemOnClickListener?.invoke(car)
+            itemOnClickListener?.invoke(car)
         }
     }
 }
