@@ -9,10 +9,5 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-
-        supportFragmentManager.beginTransaction()
-            .addToBackStack(null)
-            .replace(R.id.main_fragment_container, CarsListFragment.newInstance())
-            .commit()
     }
 }
