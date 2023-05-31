@@ -28,8 +28,9 @@
     <dimen name="btn_text_size">18sp</dimen>
     <dimen name="filter_title_text_size">22sp</dimen>
     <dimen name="icon_size">24dp</dimen>
-    <dimen name="place_holder_height">50dp</dimen>
+    <dimen name="place_holder_height">20dp</dimen>
     <dimen name="subscription_bottom_place_holder_height">10dp</dimen>
     <dimen name="subscription_text_size">20sp</dimen>
     <dimen name="fab_margin">16dp</dimen>
+    <dimen name="car_card_height">400dp</dimen>
 </resources>

@@ -9,7 +9,7 @@
     <string name="edit_text_hint_power">Мощность</string>
     <string name="text_add_image">Добавить картинку</string>
     <string name="btn_text_save">Сохранить</string>
-    <string name="production_date_template">Дата производства: %d.%d.%d</string>
+    <string name="production_date_template">Дата производства: %s</string>
     <string name="add_date_sample">30.05.2023</string>
     <string name="subscription_opportunities">Возможности с подпиской:</string>
     <string name="opportunity_first">- Неограниченный просмот коллекции</string>
@@ -24,4 +24,5 @@
     <string name="choose_photo">Выбрать фото</string>
     <string name="choose_gallery">Сделать фото</string>
     <string name="date_format">dd.MM.yyyy</string>
+    <string name="unknown_string">Неизвестно</string>
 </resources>
