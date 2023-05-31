@@ -34,5 +34,9 @@
     <fragment
         android:id="@+id/detailInfoFragment"
         android:name="com.example.carcollectionapp.presentation.fragments.DetailInfoFragment"
-        android:label="DetailInfoFragment" />
+        android:label="DetailInfoFragment" >
+        <argument
+            android:name="carId"
+            app:argType="integer" />
+    </fragment>
 </navigation>

@@ -9,6 +9,7 @@ import com.example.carcollectionapp.R
 import com.example.carcollectionapp.data.CarRepositoryImpl
 import com.example.carcollectionapp.domain.CarInfo
 import com.example.carcollectionapp.domain.usecase.GetCarInfoListUseCase
+import com.example.carcollectionapp.presentation.fragments.CarsListFragmentDirections
 
 class CarsListViewModel(application: Application): AndroidViewModel(application) {
 
@@ -20,7 +21,7 @@ class CarsListViewModel(application: Application): AndroidViewModel(application)
         get() = _carList
 
     fun showCarDetailInfo(id: Int, navController: NavController){
-        navController.navigate(R.id.action_carsListFragment_to_detailInfoFragment)
+        navController.navigate(CarsListFragmentDirections.actionCarsListFragmentToDetailInfoFragment(id))
     }
 
     fun moveToAddNewCarScreen(navController: NavController){
