@@ -34,6 +34,7 @@ android {
     buildFeatures {
         viewBinding = true
     }
+
 }
 
 dependencies {
@@ -63,4 +64,8 @@ dependencies {
     //dagger2
     implementation 'com.google.dagger:dagger:2.35.1'
     kapt 'com.google.dagger:dagger-compiler:2.35.1'
+
+    //navigation
+    implementation "androidx.navigation:navigation-ui-ktx:2.5.3"
+    implementation "androidx.navigation:navigation-fragment-ktx:2.5.3"
 }
