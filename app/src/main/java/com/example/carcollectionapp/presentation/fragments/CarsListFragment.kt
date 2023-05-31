@@ -1,6 +1,7 @@
 package com.example.carcollectionapp.presentation.fragments
 
 import android.content.Context
+import android.icu.util.Calendar
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
@@ -72,7 +73,7 @@ class CarsListFragment: BaseFragment<FragmentCarsListBinding, CarsListViewModel>
         carListAdapter.itemOnClickListener = { car ->
             Toast.makeText(requireActivity(), viewCount.toString(), Toast.LENGTH_SHORT).show()
             if(viewCount <= 0){
-
+                Toast.makeText(requireActivity(), Calendar.getInstance().time.toString(), Toast.LENGTH_SHORT).show()
             }
             else{
                 viewModel.showCarDetailInfo(car.id, findNavController())
