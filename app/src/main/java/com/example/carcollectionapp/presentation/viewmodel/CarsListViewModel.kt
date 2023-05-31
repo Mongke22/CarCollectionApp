@@ -21,4 +21,8 @@ class CarsListViewModel(application: Application): AndroidViewModel(application)
 
     }
 
+    fun moveToAddNewCarScreen(){
+
+    }
+
 }

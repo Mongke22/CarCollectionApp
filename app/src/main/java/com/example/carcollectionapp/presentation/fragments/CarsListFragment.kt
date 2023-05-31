@@ -47,6 +47,7 @@ class CarsListFragment: BaseFragment<FragmentCarsListBinding, CarsListViewModel>
 
     override fun setupView() {
         setupRecyclerView()
+        setupAddButtonClickListener()
     }
 
     private fun setupRecyclerView(){
@@ -61,6 +62,12 @@ class CarsListFragment: BaseFragment<FragmentCarsListBinding, CarsListViewModel>
     private fun setupItemClickListener(){
         carListAdapter.itemOnClickListener = { car ->
             viewModel.showCarDetailInfo(car.id)
+        }
+    }
+
+    private fun setupAddButtonClickListener(){
+        binding.fabAddCar.setOnClickListener(){
+            viewModel.moveToAddNewCarScreen()
         }
     }
 }
