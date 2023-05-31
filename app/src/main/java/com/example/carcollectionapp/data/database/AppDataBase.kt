@@ -7,7 +7,7 @@ import androidx.room.RoomDatabase
 
 @Database(
     entities = [CarInfoDbModel::class],
-    version = 0, exportSchema = false
+    version = 1, exportSchema = false
 )
 
 abstract class AppDataBase : RoomDatabase() {

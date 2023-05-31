@@ -7,6 +7,7 @@ import androidx.room.PrimaryKey
 data class CarInfoDbModel(
     @PrimaryKey(autoGenerate = true)
     val id: Int,
+    val carName: String,
     val picturePath: String,
     val productionDate: String,
     val engineCapacity: Int,

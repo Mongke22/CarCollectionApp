@@ -20,6 +20,7 @@ class CarListAdapter : ListAdapter<CarInfo, CarInfoViewHolder>(CarDiffUtilCallBa
         val car = getItem(position)
         holder.setImage(car.picturePath)
         holder.setPower(car.engineCapacity)
+        holder.setName(car.carName)
 
         holder.view.setOnClickListener{
             wordItemOnClickListener?.invoke(car)
