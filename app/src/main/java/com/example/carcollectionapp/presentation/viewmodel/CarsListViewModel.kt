@@ -16,9 +16,12 @@ import com.example.carcollectionapp.data.SettingsStorage
 import com.example.carcollectionapp.domain.CarInfo
 import com.example.carcollectionapp.domain.usecase.GetCarInfoListUseCase
 import com.example.carcollectionapp.presentation.fragments.CarsListFragmentDirections
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.launch
+import java.time.LocalDateTime
+import java.time.ZoneOffset
 
 class CarsListViewModel(application: Application): AndroidViewModel(application) {
 
@@ -50,6 +53,14 @@ class CarsListViewModel(application: Application): AndroidViewModel(application)
 
     fun moveToSettingsScreen(navController: NavController){
         navController.navigate(R.id.action_carsListFragment_to_settingsFragment)
+    }
+
+    fun setSubscription(){
+        viewModelScope.launch(Dispatchers.IO) {
+            var subscriptionTime = LocalDateTime.now()
+            subscriptionTime = subscriptionTime.plusMinutes(1)
+            storage.saveSettings(subscriptionTime.toEpochSecond(ZoneOffset.UTC).toString())
+        }
     }
 
 

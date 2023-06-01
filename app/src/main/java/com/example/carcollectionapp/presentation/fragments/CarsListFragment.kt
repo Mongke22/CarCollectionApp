@@ -14,9 +14,13 @@ import androidx.datastore.preferences.core.Preferences
 import androidx.datastore.preferences.preferencesDataStore
 import androidx.navigation.fragment.findNavController
 import com.example.carcollectionapp.databinding.FragmentCarsListBinding
+import com.example.carcollectionapp.presentation.dialogs.SubscriptionDialog
 import com.example.carcollectionapp.presentation.recycler.CarListAdapter
 import com.example.carcollectionapp.presentation.viewmodel.CarsListViewModel
 import kotlinx.coroutines.flow.first
+import java.time.LocalDate
+import java.time.LocalDateTime
+import java.time.ZoneOffset
 
 class CarsListFragment: BaseFragment<FragmentCarsListBinding, CarsListViewModel>() {
 
@@ -24,6 +28,7 @@ class CarsListFragment: BaseFragment<FragmentCarsListBinding, CarsListViewModel>
 
     private var addCount = -1
     private var viewCount = -1
+    private var subTime = LocalDateTime.now().toEpochSecond(ZoneOffset.UTC)
 
     override fun getViewBinding(): FragmentCarsListBinding {
         return FragmentCarsListBinding.inflate(layoutInflater)
@@ -50,6 +55,9 @@ class CarsListFragment: BaseFragment<FragmentCarsListBinding, CarsListViewModel>
         viewModel.viewCount.observe(this){ count ->
             viewCount = count
         }
+        viewModel.settings.observe(this){ subscriptionTime ->
+            subTime = subscriptionTime.toLong()
+        }
 
 
     }
@@ -72,8 +80,8 @@ class CarsListFragment: BaseFragment<FragmentCarsListBinding, CarsListViewModel>
     private fun setupItemClickListener(){
         carListAdapter.itemOnClickListener = { car ->
             Toast.makeText(requireActivity(), viewCount.toString(), Toast.LENGTH_SHORT).show()
-            if(viewCount <= 0){
-                Toast.makeText(requireActivity(), Calendar.getInstance().time.toString(), Toast.LENGTH_SHORT).show()
+            if(viewCount <= 0 && subscriptionDisabled()){
+                showSubscriptionScreen()
             }
             else{
                 viewModel.showCarDetailInfo(car.id, findNavController())
@@ -84,8 +92,8 @@ class CarsListFragment: BaseFragment<FragmentCarsListBinding, CarsListViewModel>
     private fun setupAddButtonClickListener(){
         binding.fabAddCar.setOnClickListener{
             Toast.makeText(requireActivity(), addCount.toString(), Toast.LENGTH_SHORT).show()
-            if(addCount <= 0){
-
+            if(addCount <= 0 && subscriptionDisabled()){
+                showSubscriptionScreen()
             }
             else{
                 viewModel.moveToAddNewCarScreen(findNavController())
@@ -97,5 +105,18 @@ class CarsListFragment: BaseFragment<FragmentCarsListBinding, CarsListViewModel>
         binding.settings.setOnClickListener {
             viewModel.moveToSettingsScreen(findNavController())
         }
+    }
+
+    private fun showSubscriptionScreen(){
+        val subscriptionFragment = SubscriptionDialog()
+        subscriptionFragment.onApplyFunc = {
+            viewModel.setSubscription()
+        }
+        subscriptionFragment.show(childFragmentManager, "dialog")
+    }
+
+    private fun subscriptionDisabled(): Boolean{
+        val time = LocalDateTime.now().toEpochSecond(ZoneOffset.UTC)
+        return  time > subTime
     }
 }
