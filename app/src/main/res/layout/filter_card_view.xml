@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <androidx.cardview.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/car_card_margin"
+        app:cardCornerRadius="@dimen/car_card_corner_radius"
+        app:cardElevation="@dimen/car_card_elevation">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <TextView
+                style="@style/filterTitleText"
+                android:text="@string/sort_direction_text" />
+
+            <RadioGroup
+                android:id="@+id/rgFilterDirection"
+                style="@style/defaultRadioGroup">
+
+                <RadioButton
+                    android:id="@+id/rbDirectionDown"
+                    style="@style/defaultRadioButton"
+                    android:text="@string/direction_down" />
+
+                <RadioButton
+                    android:id="@+id/rbDirectionUp"
+                    style="@style/defaultRadioButton"
+                    android:text="@string/direction_up" />
+            </RadioGroup>
+
+            <TextView
+                style="@style/filterTitleText"
+                android:text="@string/sort_parameter_text" />
+
+            <RadioGroup
+                android:id="@+id/rgFilterParameters"
+                style="@style/defaultRadioGroup">
+
+                <RadioButton
+                    android:id="@+id/rbOptionName"
+                    style="@style/defaultRadioButton"
+                    android:text="@string/sort_option_name" />
+
+                <RadioButton
+                    android:id="@+id/rbOptionPower"
+                    style="@style/defaultRadioButton"
+                    android:text="@string/sort_option_power" />
+            </RadioGroup>
+
+
+        </LinearLayout>
+
+    </androidx.cardview.widget.CardView>
+
+</LinearLayout>

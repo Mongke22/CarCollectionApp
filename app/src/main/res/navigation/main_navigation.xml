@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main_navigation"
+    app:startDestination="@id/carsListFragment">
+    <fragment
+        android:id="@+id/carsListFragment"
+        android:name="com.example.carcollectionapp.presentation.fragments.CarsListFragment"
+        android:label="fragment_cars_list"
+        tools:layout="@layout/fragment_cars_list" >
+        <action
+            android:id="@+id/action_carsListFragment_to_settingsFragment"
+            app:destination="@id/settingsFragment" />
+        <action
+            android:id="@+id/action_carsListFragment_to_newCarFragment"
+            app:destination="@id/newCarFragment"
+            app:popUpTo="@id/carsListFragment"
+            app:popUpToInclusive="false" />
+        <action
+            android:id="@+id/action_carsListFragment_to_detailInfoFragment"
+            app:destination="@id/detailInfoFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/newCarFragment"
+        android:name="com.example.carcollectionapp.presentation.fragments.NewCarFragment"
+        android:label="fragment_new_car"
+        tools:layout="@layout/fragment_new_car" />
+    <fragment
+        android:id="@+id/settingsFragment"
+        android:name="com.example.carcollectionapp.presentation.fragments.SettingsFragment"
+        android:label="fragment_settings"
+        tools:layout="@layout/fragment_settings" />
+    <fragment
+        android:id="@+id/detailInfoFragment"
+        android:name="com.example.carcollectionapp.presentation.fragments.DetailInfoFragment"
+        android:label="DetailInfoFragment" >
+        <argument
+            android:name="carId"
+            app:argType="integer" />
+    </fragment>
+</navigation>
