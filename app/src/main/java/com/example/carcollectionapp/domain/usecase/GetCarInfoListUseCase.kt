@@ -1,7 +1,8 @@
 package com.example.carcollectionapp.domain.usecase
 
 import com.example.carcollectionapp.domain.CarRepository
+import javax.inject.Inject
 
-class GetCarInfoListUseCase(private val repository: CarRepository) {
+class GetCarInfoListUseCase @Inject constructor(private val repository: CarRepository) {
     operator fun invoke() = repository.getCarInfoList()
 }
