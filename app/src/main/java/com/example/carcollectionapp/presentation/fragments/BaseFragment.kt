@@ -1,5 +1,6 @@
 package com.example.carcollectionapp.presentation.fragments
 
+import android.content.Context
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -9,6 +10,8 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import androidx.viewbinding.ViewBinding
+import com.example.carcollectionapp.CarApp
+import javax.inject.Inject
 
 abstract class BaseFragment<VB : ViewBinding, VM: ViewModel> : Fragment() {
 
@@ -20,14 +23,20 @@ abstract class BaseFragment<VB : ViewBinding, VM: ViewModel> : Fragment() {
     protected lateinit var viewModel: VM
     protected abstract fun getViewModelClass(): Class<VM>
 
+    @Inject
+    lateinit var viewModelFactory: ViewModelProvider.Factory
+
+    protected abstract fun injectDependencies()
+
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?,
     ): View? {
-
+        injectDependencies()
         _binding = getViewBinding()
-        viewModel = ViewModelProvider(requireActivity())[getViewModelClass()]
+        viewModel = ViewModelProvider(requireActivity(), viewModelFactory)[getViewModelClass()]
+
         return binding.root
     }
 
