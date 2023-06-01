@@ -1,5 +1,6 @@
 package com.example.carcollectionapp.data
 
+import android.app.Application
 import android.content.Context
 import android.icu.util.Calendar
 import androidx.datastore.core.DataStore
@@ -9,8 +10,9 @@ import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.map
 import java.time.LocalDateTime
 import java.time.ZoneOffset
+import javax.inject.Inject
 
-class SettingsStorage(private val context: Context) {
+class SettingsStorage  @Inject constructor(private val context: Application) {
     companion object {
         private val Context.dataStore: DataStore<Preferences> by preferencesDataStore("settings")
         private val SETTINGS_KEY = stringPreferencesKey("subscriptionTimeEpoch")
