@@ -16,11 +16,15 @@ import javax.inject.Inject
 
 class CarsListFragment: BaseFragment<FragmentCarsListBinding, CarsListViewModel>() {
 
+    companion object{
+        const val UNKNOWN_INT = -1
+    }
+
     @Inject
     lateinit var carListAdapter: CarListAdapter
 
-    private var addCount = -1
-    private var viewCount = -1
+    private var addCount = UNKNOWN_INT
+    private var viewCount = UNKNOWN_INT
 
     private var subTime = LocalDateTime.now().toEpochSecond(ZoneOffset.UTC)
 
