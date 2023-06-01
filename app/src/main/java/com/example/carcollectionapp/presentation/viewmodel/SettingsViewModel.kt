@@ -7,6 +7,8 @@ import androidx.navigation.NavController
 import com.example.carcollectionapp.R
 import com.example.carcollectionapp.data.SettingsStorage
 import kotlinx.coroutines.launch
+import java.time.LocalDateTime
+import java.time.ZoneOffset
 
 class SettingsViewModel(application: Application): AndroidViewModel(application) {
 
@@ -14,7 +16,7 @@ class SettingsViewModel(application: Application): AndroidViewModel(application)
 
     fun resetSettings(navController: NavController){
         viewModelScope.launch {
-            storage.saveSettings(false)
+            storage.saveSettings(LocalDateTime.now().toEpochSecond(ZoneOffset.UTC).toString())
             storage.saveAddCount(2)
             storage.saveViewCount(3)
         }
