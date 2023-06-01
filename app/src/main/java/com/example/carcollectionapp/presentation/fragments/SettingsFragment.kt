@@ -6,6 +6,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.navigation.fragment.findNavController
+import com.example.carcollectionapp.CarApp
 import com.example.carcollectionapp.R
 import com.example.carcollectionapp.databinding.FragmentSettingsBinding
 import com.example.carcollectionapp.presentation.viewmodel.SettingsViewModel
@@ -24,6 +25,13 @@ class SettingsFragment : BaseFragment<FragmentSettingsBinding, SettingsViewModel
         binding.btnReset.setOnClickListener {
             viewModel.resetSettings(findNavController())
         }
+    }
+    private val component by lazy {
+        (requireActivity().application as CarApp).component
+    }
+
+    override fun injectDependencies() {
+        component.inject(this)
     }
 
 }

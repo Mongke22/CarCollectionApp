@@ -12,6 +12,7 @@ import android.provider.MediaStore
 import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import androidx.navigation.fragment.findNavController
+import com.example.carcollectionapp.CarApp
 import com.example.carcollectionapp.R
 import com.example.carcollectionapp.databinding.FragmentNewCarBinding
 import com.example.carcollectionapp.domain.CarInfo
@@ -29,6 +30,7 @@ import java.text.SimpleDateFormat
 import java.time.LocalDateTime
 import java.time.format.DateTimeFormatter
 import java.util.*
+import javax.inject.Inject
 
 
 class NewCarFragment : BaseFragment<FragmentNewCarBinding, NewCarViewModel>() {
@@ -37,20 +39,22 @@ class NewCarFragment : BaseFragment<FragmentNewCarBinding, NewCarViewModel>() {
         private const val GALLERY = 1
         private const val CAMERA = 2
         private const val IMAGE_DIRECTORY = "cars"
+    }
+    private lateinit var dateSetListener: DatePickerDialog.OnDateSetListener
 
-        fun newInstance() = NewCarFragment()
+    @Inject
+    lateinit var calendar: Calendar
+
+    @Inject
+    lateinit var theNewCar: CarInfo
+
+    private val component by lazy {
+        (requireActivity().application as CarApp).component
     }
 
-    private var calendar = Calendar.getInstance()
-    private lateinit var dateSetListener: DatePickerDialog.OnDateSetListener
-    private var theNewCar = CarInfo(
-        id = 0,
-        carName = "",
-        picturePath = "",
-        productionDate = "",
-        engineCapacity = 0,
-        insertionDate = ""
-    )
+    override fun injectDependencies() {
+        component.inject(this)
+    }
 
     override fun getViewBinding(): FragmentNewCarBinding {
         return FragmentNewCarBinding.inflate(layoutInflater)

@@ -7,6 +7,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.navigation.fragment.navArgs
+import com.example.carcollectionapp.CarApp
 import com.example.carcollectionapp.R
 import com.example.carcollectionapp.databinding.FragmentDetailInfoBinding
 import com.example.carcollectionapp.domain.CarInfo
@@ -64,6 +65,13 @@ class DetailInfoFragment : BaseFragment<FragmentDetailInfoBinding, DetailInfoVie
         }
 
 
+    }
+    private val component by lazy {
+        (requireActivity().application as CarApp).component
+    }
+
+    override fun injectDependencies() {
+        component.inject(this)
     }
 
 }

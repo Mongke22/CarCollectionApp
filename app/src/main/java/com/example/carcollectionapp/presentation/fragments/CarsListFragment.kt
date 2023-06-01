@@ -14,6 +14,7 @@ import androidx.datastore.preferences.core.Preferences
 import androidx.datastore.preferences.preferencesDataStore
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.RecyclerView
+import com.example.carcollectionapp.CarApp
 import com.example.carcollectionapp.databinding.FragmentCarsListBinding
 import com.example.carcollectionapp.domain.CarInfo
 import com.example.carcollectionapp.presentation.dialogs.FilterDialog
@@ -24,19 +25,29 @@ import kotlinx.coroutines.flow.first
 import java.time.LocalDate
 import java.time.LocalDateTime
 import java.time.ZoneOffset
+import javax.inject.Inject
 
 class CarsListFragment: BaseFragment<FragmentCarsListBinding, CarsListViewModel>() {
 
-    private lateinit var carListAdapter: CarListAdapter
+    @Inject
+    lateinit var carListAdapter: CarListAdapter
 
     private var addCount = -1
     private var viewCount = -1
+
     private var subTime = LocalDateTime.now().toEpochSecond(ZoneOffset.UTC)
 
     private var filterDirectionDown = true
     private var filterParameterName = false
     private var itemsList: List<CarInfo> = listOf()
 
+    private val component by lazy {
+        (requireActivity().application as CarApp).component
+    }
+
+    override fun injectDependencies() {
+        component.inject(this)
+    }
     override fun getViewBinding(): FragmentCarsListBinding {
         return FragmentCarsListBinding.inflate(layoutInflater)
     }
@@ -98,7 +109,6 @@ class CarsListFragment: BaseFragment<FragmentCarsListBinding, CarsListViewModel>
     private fun setupRecyclerView(){
         val rvCarsList = binding.rvCars
         with(rvCarsList) {
-            carListAdapter = CarListAdapter()
             adapter = carListAdapter
         }
         setupItemClickListener()
@@ -192,6 +202,8 @@ class CarsListFragment: BaseFragment<FragmentCarsListBinding, CarsListViewModel>
 
         carListAdapter.submitList(carListToShow)
     }
+
+
 
 
 }
