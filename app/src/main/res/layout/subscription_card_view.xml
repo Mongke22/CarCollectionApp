@@ -26,6 +26,7 @@
                 android:text="@string/subscription_text"
                 android:textColor="@color/orange"
                 android:textSize="@dimen/subscription_text_size"
+                android:gravity="center"
                 android:textStyle="bold"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
