@@ -33,6 +33,14 @@ class CarsListViewModel(application: Application): AndroidViewModel(application)
     val carList: LiveData<List<CarInfo>>
         get() = _carList
 
+    private var _filterDirectionDown = MutableLiveData<Boolean>()
+    val filterDirectionDown: LiveData<Boolean>
+        get() = _filterDirectionDown
+
+    private var _filterParameterName = MutableLiveData<Boolean>()
+    val filterParameterName: LiveData<Boolean>
+        get() = _filterParameterName
+
     val settings = storage.getSettings.asLiveData()
     val viewCount = storage.getViewCount.asLiveData()
     val addCount = storage.getAddCount.asLiveData()
@@ -63,5 +71,9 @@ class CarsListViewModel(application: Application): AndroidViewModel(application)
         }
     }
 
+    fun setFilter(directionDown: Boolean, nameParam: Boolean) {
+        _filterDirectionDown.value = directionDown
+        _filterParameterName.value = nameParam
+    }
 
 }

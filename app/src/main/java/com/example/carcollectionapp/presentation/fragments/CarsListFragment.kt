@@ -13,7 +13,10 @@ import androidx.datastore.core.DataStore
 import androidx.datastore.preferences.core.Preferences
 import androidx.datastore.preferences.preferencesDataStore
 import androidx.navigation.fragment.findNavController
+import androidx.recyclerview.widget.RecyclerView
 import com.example.carcollectionapp.databinding.FragmentCarsListBinding
+import com.example.carcollectionapp.domain.CarInfo
+import com.example.carcollectionapp.presentation.dialogs.FilterDialog
 import com.example.carcollectionapp.presentation.dialogs.SubscriptionDialog
 import com.example.carcollectionapp.presentation.recycler.CarListAdapter
 import com.example.carcollectionapp.presentation.viewmodel.CarsListViewModel
@@ -30,6 +33,10 @@ class CarsListFragment: BaseFragment<FragmentCarsListBinding, CarsListViewModel>
     private var viewCount = -1
     private var subTime = LocalDateTime.now().toEpochSecond(ZoneOffset.UTC)
 
+    private var filterDirectionDown = true
+    private var filterParameterName = false
+    private var itemsList: List<CarInfo> = listOf()
+
     override fun getViewBinding(): FragmentCarsListBinding {
         return FragmentCarsListBinding.inflate(layoutInflater)
     }
@@ -39,6 +46,12 @@ class CarsListFragment: BaseFragment<FragmentCarsListBinding, CarsListViewModel>
     }
 
     override fun observeData() {
+        setupItemObserver()
+        setupSubscriptionObserver()
+        setupFilterObserver()
+    }
+
+    private fun setupItemObserver(){
         viewModel.carList.observe(this){ cars ->
             if(cars.isEmpty()){
                 binding.tvNoItems.visibility = View.VISIBLE
@@ -46,9 +59,13 @@ class CarsListFragment: BaseFragment<FragmentCarsListBinding, CarsListViewModel>
             }else{
                 binding.tvNoItems.visibility = View.GONE
                 binding.rvCars.visibility = View.VISIBLE
+                itemsList = cars
                 carListAdapter.submitList(cars)
             }
         }
+    }
+
+    private fun setupSubscriptionObserver(){
         viewModel.addCount.observe(this){ count ->
             addCount = count
         }
@@ -58,14 +75,24 @@ class CarsListFragment: BaseFragment<FragmentCarsListBinding, CarsListViewModel>
         viewModel.settings.observe(this){ subscriptionTime ->
             subTime = subscriptionTime.toLong()
         }
+    }
 
-
+    private fun setupFilterObserver(){
+        viewModel.filterDirectionDown.observe(this){ _filterDirectionDown ->
+            filterDirectionDown = _filterDirectionDown
+            applyFilter()
+        }
+        viewModel.filterParameterName.observe(this){ _filterParameterName ->
+            filterParameterName = _filterParameterName
+            applyFilter()
+        }
     }
 
     override fun setupView() {
         setupRecyclerView()
         setupAddButtonClickListener()
         setupSettingsClickListener()
+        setupFilterClickListener()
     }
 
     private fun setupRecyclerView(){
@@ -75,6 +102,7 @@ class CarsListFragment: BaseFragment<FragmentCarsListBinding, CarsListViewModel>
             adapter = carListAdapter
         }
         setupItemClickListener()
+        setupOnDataChangeListener()
     }
 
     private fun setupItemClickListener(){
@@ -87,6 +115,14 @@ class CarsListFragment: BaseFragment<FragmentCarsListBinding, CarsListViewModel>
                 viewModel.showCarDetailInfo(car.id, findNavController())
             }
         }
+    }
+
+    private fun setupOnDataChangeListener() {
+        carListAdapter.registerAdapterDataObserver(object : RecyclerView.AdapterDataObserver() {
+            override fun onItemRangeMoved(fromPosition: Int, toPosition: Int, itemCount: Int) {
+                binding.rvCars.scrollToPosition(0)
+            }
+        })
     }
 
     private fun setupAddButtonClickListener(){
@@ -107,6 +143,16 @@ class CarsListFragment: BaseFragment<FragmentCarsListBinding, CarsListViewModel>
         }
     }
 
+    private fun setupFilterClickListener(){
+        binding.filter.setOnClickListener{
+            val filterFragment = FilterDialog(filterDirectionDown, filterParameterName)
+            filterFragment.onApplyFunc = {
+                viewModel.setFilter(filterFragment.filterDirectionDown, filterFragment.filterParameterName)
+            }
+            filterFragment.show(childFragmentManager, "dialog")
+        }
+    }
+
     private fun showSubscriptionScreen(){
         val subscriptionFragment = SubscriptionDialog()
         subscriptionFragment.onApplyFunc = {
@@ -119,4 +165,33 @@ class CarsListFragment: BaseFragment<FragmentCarsListBinding, CarsListViewModel>
         val time = LocalDateTime.now().toEpochSecond(ZoneOffset.UTC)
         return  time > subTime
     }
+
+    private fun applyFilter(){
+        val carListToShow = if(filterDirectionDown){
+            if(filterParameterName){
+                itemsList.sortedByDescending { car ->
+                    car.carName
+                }
+            }else{
+                itemsList.sortedByDescending { car ->
+                    car.engineCapacity
+                }
+            }
+        }
+        else{
+            if(filterParameterName){
+                itemsList.sortedBy { car ->
+                    car.carName
+                }
+            }else{
+                itemsList.sortedBy { car ->
+                    car.engineCapacity
+                }
+            }
+        }
+
+        carListAdapter.submitList(carListToShow)
+    }
+
+
 }
