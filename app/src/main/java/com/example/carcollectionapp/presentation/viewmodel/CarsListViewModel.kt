@@ -1,23 +1,13 @@
 package com.example.carcollectionapp.presentation.viewmodel
 
-import android.app.Application
-import android.content.Context
-import android.icu.util.Calendar
-import android.util.Log
-import androidx.datastore.core.DataStore
-import androidx.datastore.dataStore
-import androidx.datastore.preferences.core.Preferences
-import androidx.datastore.preferences.preferencesDataStore
 import androidx.lifecycle.*
 import androidx.navigation.NavController
 import com.example.carcollectionapp.R
-import com.example.carcollectionapp.data.CarRepositoryImpl
 import com.example.carcollectionapp.data.SettingsStorage
 import com.example.carcollectionapp.domain.CarInfo
 import com.example.carcollectionapp.domain.usecase.GetCarInfoListUseCase
 import com.example.carcollectionapp.presentation.fragments.CarsListFragmentDirections
 import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.launch
 import java.time.LocalDateTime

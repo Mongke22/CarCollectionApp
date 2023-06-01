@@ -1,9 +1,7 @@
 package com.example.carcollectionapp.data
 
-import android.app.Application
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.Transformations
-import com.example.carcollectionapp.data.database.AppDataBase
 import com.example.carcollectionapp.data.database.CarInfoDao
 import com.example.carcollectionapp.domain.CarInfo
 import com.example.carcollectionapp.domain.CarRepository

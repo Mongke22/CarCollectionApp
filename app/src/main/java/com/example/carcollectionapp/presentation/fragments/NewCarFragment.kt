@@ -7,7 +7,6 @@ import android.content.Context
 import android.content.ContextWrapper
 import android.content.Intent
 import android.graphics.Bitmap
-import android.net.Uri
 import android.provider.MediaStore
 import android.widget.Toast
 import androidx.appcompat.app.AlertDialog

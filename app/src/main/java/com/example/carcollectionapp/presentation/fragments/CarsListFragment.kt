@@ -1,17 +1,6 @@
 package com.example.carcollectionapp.presentation.fragments
 
-import android.content.Context
-import android.icu.util.Calendar
-import android.os.Bundle
-import android.util.Log
-import android.view.LayoutInflater
 import android.view.View
-import android.view.ViewGroup
-import android.widget.Toast
-import androidx.activity.OnBackPressedCallback
-import androidx.datastore.core.DataStore
-import androidx.datastore.preferences.core.Preferences
-import androidx.datastore.preferences.preferencesDataStore
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.RecyclerView
 import com.example.carcollectionapp.CarApp
@@ -21,8 +10,6 @@ import com.example.carcollectionapp.presentation.dialogs.FilterDialog
 import com.example.carcollectionapp.presentation.dialogs.SubscriptionDialog
 import com.example.carcollectionapp.presentation.recycler.CarListAdapter
 import com.example.carcollectionapp.presentation.viewmodel.CarsListViewModel
-import kotlinx.coroutines.flow.first
-import java.time.LocalDate
 import java.time.LocalDateTime
 import java.time.ZoneOffset
 import javax.inject.Inject
@@ -117,7 +104,6 @@ class CarsListFragment: BaseFragment<FragmentCarsListBinding, CarsListViewModel>
 
     private fun setupItemClickListener(){
         carListAdapter.itemOnClickListener = { car ->
-            Toast.makeText(requireActivity(), viewCount.toString(), Toast.LENGTH_SHORT).show()
             if(viewCount <= 0 && subscriptionDisabled()){
                 showSubscriptionScreen()
             }
@@ -137,7 +123,6 @@ class CarsListFragment: BaseFragment<FragmentCarsListBinding, CarsListViewModel>
 
     private fun setupAddButtonClickListener(){
         binding.fabAddCar.setOnClickListener{
-            Toast.makeText(requireActivity(), addCount.toString(), Toast.LENGTH_SHORT).show()
             if(addCount <= 0 && subscriptionDisabled()){
                 showSubscriptionScreen()
             }
