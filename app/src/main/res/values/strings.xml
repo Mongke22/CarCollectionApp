@@ -1,3 +1,37 @@
 <resources>
     <string name="app_name">CarCollectionApp</string>
+    <string name="cars_title">Машины</string>
+    <string name="car_name_sample">Porsche 911</string>
+    <string name="car_power_template">Мощность: %d л.с.</string>
+    <string name="settings_button">Сбросить подписку</string>
+    <string name="edit_text_hint_name">Название</string>
+    <string name="edit_text_hint_productionDate">Дата выпуска</string>
+    <string name="edit_text_hint_power">Мощность</string>
+    <string name="text_add_image">Добавить картинку</string>
+    <string name="btn_text_save">Сохранить</string>
+    <string name="production_date_template">Дата производства: %s</string>
+    <string name="add_date_sample">30.05.2023</string>
+    <string name="subscription_opportunities">Возможности с подпиской:</string>
+    <string name="opportunity_first">- Неограниченный просмот коллекции</string>
+    <string name="opportunity_second">- Неограниченное количество загрузок в коллекцию</string>
+    <string name="subscription_text">Оформите подписку на 1 минуту</string>
+    <string name="no_items_text">Здесь пока ничего нет</string>
+    <string name="something_went_wrong">Что-то пошло не так</string>
+    <string name="require_permissions">Пожалуйста, предоставьте разрешение к галерее</string>
+    <string name="confirm">Ок</string>
+    <string name="cancel">Отмена</string>
+    <string name="choose_action">Выберите действие</string>
+    <string name="choose_photo">Выбрать фото</string>
+    <string name="choose_gallery">Сделать фото</string>
+    <string name="date_format">dd.MM.yyyy</string>
+    <string name="unknown_string">Неизвестно</string>
+    <string name="settings_hint">Настройки</string>
+
+    <string name="menu_sort">Сортировать</string>
+    <string name="sort_direction_text">Сортировать по</string>
+    <string name="sort_parameter_text">Сортировать по параметру:</string>
+    <string name="direction_down">По убыванию</string>
+    <string name="direction_up">По возрастанию</string>
+    <string name="sort_option_name">Сортировать по названию</string>
+    <string name="sort_option_power">Сортировать по мощности</string>
 </resources>
