@@ -26,4 +26,12 @@
     <string name="date_format">dd.MM.yyyy</string>
     <string name="unknown_string">Неизвестно</string>
     <string name="settings_hint">Настройки</string>
+
+    <string name="menu_sort">Сортировать</string>
+    <string name="sort_direction_text">Сортировать по</string>
+    <string name="sort_parameter_text">Сортировать по параметру:</string>
+    <string name="direction_down">По убыванию</string>
+    <string name="direction_up">По возрастанию</string>
+    <string name="sort_option_name">Сортировать по названию</string>
+    <string name="sort_option_power">Сортировать по мощности</string>
 </resources>
