@@ -5,8 +5,9 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.ListAdapter
 import com.example.carcollectionapp.R
 import com.example.carcollectionapp.domain.CarInfo
+import javax.inject.Inject
 
-class CarListAdapter : ListAdapter<CarInfo, CarInfoViewHolder>(CarDiffUtilCallBack()) {
+class CarListAdapter @Inject constructor() : ListAdapter<CarInfo, CarInfoViewHolder>(CarDiffUtilCallBack()) {
 
     var itemOnClickListener: ((CarInfo) -> Unit)? = null
 

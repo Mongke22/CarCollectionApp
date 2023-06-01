@@ -4,6 +4,7 @@ import android.app.Application
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
+import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.carcollectionapp.data.CarRepositoryImpl
 import com.example.carcollectionapp.domain.CarInfo
@@ -11,11 +12,11 @@ import com.example.carcollectionapp.domain.usecase.GetCarInfoListUseCase
 import com.example.carcollectionapp.domain.usecase.GetCarInfoUseCase
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
+import javax.inject.Inject
 
-class DetailInfoViewModel(application: Application): AndroidViewModel(application) {
-
-    private val repository = CarRepositoryImpl(application)
-    private val getCarInfoUseCase = GetCarInfoUseCase(repository)
+class DetailInfoViewModel @Inject constructor(
+    private val getCarInfoUseCase: GetCarInfoUseCase
+): ViewModel() {
 
     private var _theCar = MutableLiveData<CarInfo>()
     val theCar: LiveData<CarInfo>

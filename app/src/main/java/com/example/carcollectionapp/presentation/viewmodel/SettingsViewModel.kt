@@ -2,6 +2,7 @@ package com.example.carcollectionapp.presentation.viewmodel
 
 import android.app.Application
 import androidx.lifecycle.AndroidViewModel
+import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import androidx.navigation.NavController
 import com.example.carcollectionapp.R
@@ -9,10 +10,11 @@ import com.example.carcollectionapp.data.SettingsStorage
 import kotlinx.coroutines.launch
 import java.time.LocalDateTime
 import java.time.ZoneOffset
+import javax.inject.Inject
 
-class SettingsViewModel(application: Application): AndroidViewModel(application) {
-
-    private val storage = SettingsStorage(application)
+class SettingsViewModel @Inject constructor(
+    private val storage: SettingsStorage
+): ViewModel() {
 
     fun resetSettings(navController: NavController){
         viewModelScope.launch {

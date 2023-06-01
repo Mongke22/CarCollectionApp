@@ -22,12 +22,12 @@ import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.launch
 import java.time.LocalDateTime
 import java.time.ZoneOffset
+import javax.inject.Inject
 
-class CarsListViewModel(application: Application): AndroidViewModel(application) {
-
-    private val repository = CarRepositoryImpl(application)
-    private val getCarInfoListUseCase = GetCarInfoListUseCase(repository)
-    private val storage = SettingsStorage(application)
+class CarsListViewModel @Inject constructor(
+    getCarInfoListUseCase: GetCarInfoListUseCase,
+    private val storage: SettingsStorage,
+) : ViewModel() {
 
     private var _carList = getCarInfoListUseCase()
     val carList: LiveData<List<CarInfo>>
@@ -45,25 +45,26 @@ class CarsListViewModel(application: Application): AndroidViewModel(application)
     val viewCount = storage.getViewCount.asLiveData()
     val addCount = storage.getAddCount.asLiveData()
 
-    fun showCarDetailInfo(id: Int, navController: NavController){
+    fun showCarDetailInfo(id: Int, navController: NavController) {
         viewModelScope.launch {
             storage.saveViewCount(storage.getViewCount.first() - 1)
         }
-        navController.navigate(CarsListFragmentDirections.actionCarsListFragmentToDetailInfoFragment(id))
+        navController.navigate(CarsListFragmentDirections.actionCarsListFragmentToDetailInfoFragment(
+            id))
     }
 
-    fun moveToAddNewCarScreen(navController: NavController){
+    fun moveToAddNewCarScreen(navController: NavController) {
         viewModelScope.launch {
             storage.saveAddCount(storage.getAddCount.first() - 1)
         }
         navController.navigate(R.id.action_carsListFragment_to_newCarFragment)
     }
 
-    fun moveToSettingsScreen(navController: NavController){
+    fun moveToSettingsScreen(navController: NavController) {
         navController.navigate(R.id.action_carsListFragment_to_settingsFragment)
     }
 
-    fun setSubscription(){
+    fun setSubscription() {
         viewModelScope.launch(Dispatchers.IO) {
             var subscriptionTime = LocalDateTime.now()
             subscriptionTime = subscriptionTime.plusMinutes(1)
